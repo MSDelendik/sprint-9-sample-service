@@ -1,0 +1,22 @@
+curl -X POST https://order-gen-service.sprint9.tgcloudenv.ru/delete_kafka \
+-H 'Content-Type: application/json; charset=utf-8' \
+--data-binary @- << EOF
+{
+    "student": "msdelendik"
+}
+EOF
+
+curl -X POST https://order-gen-service.sprint9.tgcloudenv.ru/register_kafka \
+-H 'Content-Type: application/json; charset=utf-8' \
+--data-binary @- << EOF
+{
+    "student": "msdelendik",
+    "kafka_connect":{
+        "host": "rc1a-kt25qqu331tgtroc.mdb.yandexcloud.net",
+        "port": 9091,
+        "topic": "order-service_orders",
+        "producer_name": "producer_consumer",
+        "producer_password": "Qwerty123"
+    }
+}
+EOF 

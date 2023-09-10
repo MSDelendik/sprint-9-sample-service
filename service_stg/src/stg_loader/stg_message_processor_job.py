@@ -1,11 +1,9 @@
 import time
 from datetime import datetime
 from logging import Logger
-from stg_loader.repository.stg_repository import StgRepository
-from lib.kafka_connect.kafka_connectors import KafkaConsumer
-from lib.kafka_connect.kafka_connectors import KafkaProducer
-from lib.redis.redis_client import RedisClient
-from lib.pg import pg_connect
+from stg_repository import StgRepository
+from kafka_connectors import *
+from lib.redis import RedisClient
 import json
 
 
@@ -36,7 +34,7 @@ class StgMessageProcessor:
             if not msg:
                 self._logger.info(f"{datetime.utcnow()}: There is no message")
                 break
-
+            print(msg)
             payload = msg.get('payload')
 
             self._stg_repository.order_events_insert(msg['object_id'],
